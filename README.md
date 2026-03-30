@@ -1,5 +1,7 @@
 # AgenciaViajeApp
 
+Edmilson Alejandro Martinez Reynosa
+
 App de gestión de destinos turísticos.
 
 ## Funcionalidades implementadas
