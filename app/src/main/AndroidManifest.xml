@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AgenciaViajeApp">
         <activity
+            android:name=".DetalleDestinoActivity"
+            android:exported="false" />
+        <activity
             android:name=".AgregarDestinoActivity"
             android:exported="false" />
         <activity
