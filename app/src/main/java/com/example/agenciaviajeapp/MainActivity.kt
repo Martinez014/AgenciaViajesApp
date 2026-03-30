@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         db = FirebaseFirestore.getInstance()
 
-        // 🔥 CARGAR DATOS DE FIRESTORE
+        // CARGAR DATOS DE FIRESTORE
         cargarDestinos()
 
         // BOTÓN PARA IR A AGREGAR DESTINO

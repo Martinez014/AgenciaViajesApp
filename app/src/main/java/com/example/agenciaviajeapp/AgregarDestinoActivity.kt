@@ -25,7 +25,6 @@ class AgregarDestinoActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     private val storage = FirebaseStorage.getInstance()
 
-    // 🔥 NUEVO MÉTODO para seleccionar imagen (sin deprecated)
     private val imagePicker = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
@@ -46,20 +45,20 @@ class AgregarDestinoActivity : AppCompatActivity() {
         btnSeleccionarImagen = findViewById(R.id.btnSeleccionarImagen)
         btnGuardar = findViewById(R.id.btnGuardar)
 
-        // 📌 Spinner de países
+
         val paises = arrayOf("El Salvador", "México", "España", "Estados Unidos")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, paises)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spPais.adapter = adapter
 
-        // 📸 Seleccionar imagen
+        // Seleccionar imagen
         btnSeleccionarImagen.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             imagePicker.launch(intent)
         }
 
-        // 💾 Guardar destino
+        // Guardar destino
         btnGuardar.setOnClickListener {
             guardarDestino()
         }
@@ -71,7 +70,7 @@ class AgregarDestinoActivity : AppCompatActivity() {
         val precioStr = etPrecio.text.toString().trim()
         val descripcion = etDescripcion.text.toString().trim()
 
-        // ✅ VALIDACIONES
+        // VALIDACIONES
         if (nombre.isEmpty() || precioStr.isEmpty() || descripcion.isEmpty() || imageUri == null) {
             Toast.makeText(this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show()
             return
@@ -88,7 +87,7 @@ class AgregarDestinoActivity : AppCompatActivity() {
             return
         }
 
-        // 🔥 SUBIR IMAGEN A FIREBASE STORAGE
+        // SUBIR IMAGEN A FIREBASE STORAGE
         val fileName = UUID.randomUUID().toString()
         val ref = storage.reference.child("destinos/$fileName")
 
@@ -97,7 +96,7 @@ class AgregarDestinoActivity : AppCompatActivity() {
 
                 ref.downloadUrl.addOnSuccessListener { uri: Uri ->
 
-                    // 📦 Crear objeto destino
+                    // Crear objeto destino
                     val destino = hashMapOf(
                         "nombre" to nombre,
                         "pais" to pais,
@@ -106,7 +105,7 @@ class AgregarDestinoActivity : AppCompatActivity() {
                         "imagenUrl" to uri.toString()
                     )
 
-                    // 🔥 Guardar en Firestore
+                    // Guardar en Firestore
                     db.collection("destinos")
                         .add(destino)
                         .addOnSuccessListener {
