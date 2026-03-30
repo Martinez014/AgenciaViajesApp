@@ -18,9 +18,6 @@
             android:name=".AgregarDestinoActivity"
             android:exported="false" />
         <activity
-            android:name=".Destino"
-            android:exported="false" />
-        <activity
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
